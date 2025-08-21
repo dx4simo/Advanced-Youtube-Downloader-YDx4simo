@@ -1,7 +1,7 @@
 #.===============================================================
 #. --- YOUTUBE DOWNLOADER V1.0 ---
 #. --- CREATED BY : ISLAM ALBADAWY ---
-#. --- EMOJI : 🔗✅👀🎬❌🛠️⚠️⏳👉 ---
+#. --- NOTE: ASCII-only icons for maximum terminal compatibility ---
 #.===============================================================
 
 import os
@@ -12,6 +12,19 @@ import platform
 import subprocess
 import urllib.request
 import tarfile
+
+# -------------------------
+# ASCII Icons (CMD-safe)
+# -------------------------
+ICON = {
+    "url":   "[URL]",
+    "ok":    "[OK]",
+    "err":   "[ERR]",
+    "warn":  "[!]",
+    "dl":    "[DL]",
+    "tip":   "[TIP]",
+    "prompt": ">"
+}
 
 # -------------------------
 # Auto-install required packages (yt-dlp, colorama, pyfiglet)
@@ -31,24 +44,22 @@ def ensure_pip_package(pkg: str, import_name: str = None, upgrade: bool = False)
     except ImportError:
         pass
 
-    print(f"🛠️ Installing '{pkg}' ...")
+    print(f"{ICON['tip']} Installing '{pkg}' ...")
     args = [sys.executable, "-m", "pip", "install"]
     if upgrade:
         args.append("-U")
     args.append(pkg)
     try:
-        # Show pip output to user
         subprocess.run(args, check=True)
     except Exception as e:
-        print(f"❌ Failed to install {pkg}: {e}")
+        print(f"{ICON['err']} Failed to install {pkg}: {e}")
         return False
 
-    # Try import again
     try:
         importlib.import_module(modname)
         return True
     except ImportError:
-        print(f"❌ Could not import {modname} after installation.")
+        print(f"{ICON['err']} Could not import {modname} after installation.")
         return False
 
 # Make sure required packages exist (yt-dlp upgrade recommended)
@@ -76,13 +87,28 @@ except Exception:
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 # ---------------------------------
-# Helpers: progress bar
+# Helpers: progress bar (ASCII-first, auto-fallback)
 # ---------------------------------
+USE_ASCII = os.environ.get("ASCII", "0") == "1" or os.environ.get("NO_UNICODE", "0") == "1"
+
+def _charset():
+    """Choose characters for progress bar (Unicode blocks if supported, else ASCII)."""
+    if USE_ASCII:
+        return "#", "-"
+    try:
+        # Try encoding a block character with current stdout encoding
+        ("█").encode(sys.stdout.encoding or "utf-8")
+        return "█", "·"  # Unicode full & dot
+    except Exception:
+        return "#", "-"  # ASCII fallback
+
+FULL_CH, EMPTY_CH = _charset()
+
 def _bar(percent: float, width: int = 30) -> str:
-    """Return a simple progress bar string."""
+    """Return a simple progress bar string using chosen charset."""
     p = max(0.0, min(100.0, percent))
     filled = int(width * p / 100.0)
-    return f"[{'█'*filled}{'·'*(width-filled)}] {p:5.1f}%"
+    return f"[{FULL_CH*filled}{EMPTY_CH*(width-filled)}] {p:5.1f}%"
 
 def _reporthook_builder(label: str):
     """Build a reporthook for urlretrieve to show progress (for ffmpeg download)."""
@@ -106,7 +132,7 @@ def _reporthook_builder(label: str):
 # Banner
 # ---------------------------------
 def print_banner():
-    """Pretty colored banner at start."""
+    """Pretty colored banner at start (ASCII-only text)."""
     import shutil as _shutil
     cols = max(60, _shutil.get_terminal_size((100, 20)).columns)
     colors = [Fore.RED, Fore.YELLOW, Fore.GREEN, Fore.CYAN, Fore.MAGENTA, Fore.BLUE]
@@ -118,7 +144,7 @@ def print_banner():
         text2 = f2.renderText("V1.0")
         lines = (text1 + text2).splitlines()
     except Exception:
-        # Fallback ASCII
+        # Fallback ASCII banner
         lines = r"""
 __     __  _   _ _   _ _____ _____ _   _ _____ ____   ____   ____  _   _ _   _ _   _ ____  _____ ____  
 \ \   / / | | | | \ | |_   _| ____| \ | | ____|  _ \ |  _ \ / __ \| \ | | \ | | \ | |  _ \| ____|  _ \ 
@@ -172,7 +198,7 @@ def check_ffmpeg() -> str:
         return local_ff
 
     # 3) Download portable ffmpeg (with progress)
-    print("⚠️ ffmpeg not found. Downloading a portable version...")
+    print(f"{ICON['warn']} ffmpeg not found. Downloading a portable version...")
 
     ffmpeg_dir = os.path.join(get_script_dir(), "ffmpeg")
     os.makedirs(ffmpeg_dir, exist_ok=True)
@@ -181,13 +207,12 @@ def check_ffmpeg() -> str:
     if system_name == "windows":
         url = "https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip"
         zip_path = os.path.join(ffmpeg_dir, "ffmpeg.zip")
-        urllib.request.urlretrieve(url, zip_path, _reporthook_builder("⏳ Downloading ffmpeg (Windows)"))
+        urllib.request.urlretrieve(url, zip_path, _reporthook_builder(f"{ICON['dl']} Downloading ffmpeg (Windows)"))
         print(" - Extracting...")
         with zipfile.ZipFile(zip_path, "r") as zip_ref:
             zip_ref.extractall(ffmpeg_dir)
         os.remove(zip_path)
 
-        # Move ffmpeg.exe to ffmpeg_dir
         moved = False
         for root, _, files in os.walk(ffmpeg_dir):
             if "ffmpeg.exe" in files:
@@ -201,16 +226,14 @@ def check_ffmpeg() -> str:
             raise RuntimeError("Could not locate ffmpeg.exe inside the downloaded archive.")
         return os.path.join(ffmpeg_dir, "ffmpeg.exe")
     else:
-        # Linux/macOS: static build (amd64)
         url = "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz"
         tar_path = os.path.join(ffmpeg_dir, "ffmpeg.tar.xz")
-        urllib.request.urlretrieve(url, tar_path, _reporthook_builder("⏳ Downloading ffmpeg (Unix)"))
+        urllib.request.urlretrieve(url, tar_path, _reporthook_builder(f"{ICON['dl']} Downloading ffmpeg (Unix)"))
         print(" - Extracting...")
         with tarfile.open(tar_path, "r:xz") as tar_ref:
             tar_ref.extractall(ffmpeg_dir)
         os.remove(tar_path)
 
-        # Move ffmpeg binary to ffmpeg_dir
         moved = False
         for root, _, files in os.walk(ffmpeg_dir):
             if "ffmpeg" in files and not root.endswith("doc"):
@@ -225,7 +248,7 @@ def check_ffmpeg() -> str:
                 moved = True
                 break
         if not moved:
-            raise RuntimeError("⚠️ Could not locate ffmpeg binary inside the downloaded archive.")
+            raise RuntimeError("Could not locate ffmpeg binary inside the downloaded archive.")
         return os.path.join(ffmpeg_dir, "ffmpeg")
 
 # ---------------------------------
@@ -259,23 +282,23 @@ def progress_hook(d):
             percent = downloaded * 100.0 / total
             bar = _bar(percent)
         else:
-            bar = "[Downloading…]"
+            bar = "[Downloading...]"
         sp = (d.get('_speed_str') or '').strip()
         eta = d.get('eta')
         eta_str = f" | ETA: {eta}s" if eta is not None else ""
-        print(f"\r⏳ {bar} | {sp or '—'}{eta_str}", end="", flush=True)
+        print(f"\r{ICON['dl']} {bar} | {sp or '-'}{eta_str}", end="", flush=True)
     elif status == 'finished':
-        print("\n✅ Downloaded. Post-processing...")
+        print(f"\n{ICON['ok']} Downloaded. Post-processing...")
 
 # ---------------------------------
 # Main
 # ---------------------------------
 def main():
-    print_banner()  # Colored banner first
+    print_banner()  # Banner at start
 
-    url = input("🔗 Enter video or playlist URL: ").strip()
+    url = input(f"{ICON['url']} Enter video or playlist URL: ").strip()
 
-    print("\nSelect 🎬 quality/mode:")
+    print("\nSelect quality/mode:")
     print("1 - 360p")
     print("2 - 480p")
     print("3 - 720p (common)")
@@ -284,7 +307,7 @@ def main():
     print("6 - Audio Only (MP3)")
     print("7 - Video + Subtitles (save .srt AND embed soft subs)")
     print("8 - Video + Hard-burn Subtitles (save .srt AND burn into video)")
-    choice = input("👉 Your choice: ").strip()
+    choice = input(f"{ICON['prompt']} Your choice: ").strip()
 
     save_path = get_save_folder()
     fmt = build_format_selector(choice)
@@ -360,17 +383,17 @@ def main():
     try:
         with YoutubeDL(ydl_opts) as ydl:
             ydl.download([url])
-        print("\n🎉 Done!")
+        print(f"\n{ICON['ok']} Done!")
         if choice == "8":
-            print("✅ Subtitles were hard-burned into the video (cannot be toggled off).")
+            print(f"{ICON['ok']} Subtitles were hard-burned into the video (cannot be toggled off).")
         elif choice == "7":
-            print("✅ Subtitles were embedded as a soft track and also saved as .srt.")
+            print(f"{ICON['ok']} Subtitles were embedded as a soft track and also saved as .srt.")
         elif choice in {"1","2","3","4","5"}:
-            print("✅ Final output is MP4.")
+            print(f"{ICON['ok']} Final output is MP4.")
     except Exception as e:
-        print("\n❌ Error during download/conversion:")
+        print(f"\n{ICON['err']} Error during download/conversion:")
         print(str(e))
-        print("\nTips 🛠️:")
+        print("\nTips:")
         print("- Ensure internet is available for first-time auto-setup.")
         print("- Update yt-dlp: pip install -U yt-dlp (script tries to auto-upgrade).")
         print("- For hard-burn (8), make sure requested subtitle languages exist.")
