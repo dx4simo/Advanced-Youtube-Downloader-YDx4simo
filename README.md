@@ -41,7 +41,7 @@ Install YDx4simo:
 
 ## Screenshots
 
-![App Screenshot](https://github.com/user-attachments/assets/c0549fb5-9b43-478c-99ae-12e06d37b290)
+![App Screenshot]
 <img width="754" height="380" alt="1" src="https://github.com/user-attachments/assets/55f559be-d862-4405-943f-958373a412bb" />
 <img width="772" height="396" alt="2" src="https://github.com/user-attachments/assets/5bb22955-4fdf-4993-84d4-f77c354c4869" />
 <img width="945" height="491" alt="3" src="https://github.com/user-attachments/assets/dd186b53-540c-4481-ae40-5c1fb4a736c3" />
