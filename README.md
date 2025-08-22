@@ -27,7 +27,7 @@ Install YDx4simo:
   # 1) 📦 Clone the repo
   git clone https://github.com/dx4simo/Advanced-Youtube-Downloader-YDx4simo.git
   cd Advanced-Youtube-Downloader-YDx4simo
-  python stable_version.py
+  python YD4simo_downloader.py
 
   ## Note: 🚀 First run will auto-install deps (yt-dlp, colorama, pyfiglet) and fetch a portable FFmpeg into ./ffmpeg/ if missing. 
 ```
@@ -35,7 +35,7 @@ Install YDx4simo:
 ## Usage/Examples
 
 ```bash
- python run.py
+ python YD4simo_downloader.py
 ```
 
 
