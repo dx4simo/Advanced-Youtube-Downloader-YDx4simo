@@ -167,7 +167,7 @@ __     __  _   _ _   _ _____ _____ _   _ _____ ____   ____   ____  _   _ _   _ _
 
     # Plain block under banner
     print(" =============================================================== ")
-    print(f" --- YOUTUBE DOWNLOADER 'YDx4simo Downloader' {__version__} ---- ")
+    print(f" --- YOUTUBE DOWNLOADER 'YDx4simo Downloader {__version__}' ---- ")
     print(" --- CREATED BY : ISLAM ALBADAWY ---")
     print(" ========================================================\n ")
 
