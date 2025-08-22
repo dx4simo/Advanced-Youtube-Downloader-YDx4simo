@@ -1,5 +1,5 @@
 
-# 🎬 Advanced YouTube Downloader (YDx4simo) v1.2
+# 🎬 Advanced YouTube Downloader (YDx4simo) v1.1.2
 
 This is a tool for download any Video or Playlist from Youtube. It has may options for diferent qualities for videos and also mp4, mp3 and subtitles.
 Choose quality, MP4/MP3 output, and subtitles (SRT, soft or hard); it auto-installs deps (yt-dlp + portable FFmpeg), shows ASCII-safe colored progress, and saves to ./Videos.
@@ -41,10 +41,10 @@ Install YDx4simo:
 
 ## Screenshots
 
-<img width="754" height="380" alt="1" src="https://github.com/user-attachments/assets/55f559be-d862-4405-943f-958373a412bb" />
-<img width="754" height="380" alt="2" src="https://github.com/user-attachments/assets/5bb22955-4fdf-4993-84d4-f77c354c4869" />
-<img width="754" height="380" alt="3" src="https://github.com/user-attachments/assets/dd186b53-540c-4481-ae40-5c1fb4a736c3" />
-
+<img width="753" height="405" alt="1" src="https://github.com/user-attachments/assets/f5036a0f-7ff0-4f9c-a59d-3abb2cdfb42b" />
+<img width="753" height="405" alt="2" src="https://github.com/user-attachments/assets/53e7a256-5227-493f-8e11-432fbce4963b" />
+<img width="753" height="405" alt="3" src="https://github.com/user-attachments/assets/bd51412c-f93a-4562-b726-9a1a7a4087ce" />
+<img width="753" height="405" alt="4" src="https://github.com/user-attachments/assets/65948108-53a8-492d-bec4-d3c36df7aca4" />
 
 
 
