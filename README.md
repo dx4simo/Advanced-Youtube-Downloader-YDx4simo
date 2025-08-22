@@ -41,10 +41,11 @@ Install YDx4simo:
 
 ## Screenshots
 
-<img width="753" height="405" alt="1" src="https://github.com/user-attachments/assets/f5036a0f-7ff0-4f9c-a59d-3abb2cdfb42b" />
-<img width="753" height="405" alt="2" src="https://github.com/user-attachments/assets/53e7a256-5227-493f-8e11-432fbce4963b" />
-<img width="753" height="405" alt="3" src="https://github.com/user-attachments/assets/bd51412c-f93a-4562-b726-9a1a7a4087ce" />
+<img width="753" height="405" alt="1" src="https://github.com/user-attachments/assets/1c777271-9252-4c1a-99f0-29f6c2348182" />
+<img width="753" height="405" alt="2" src="https://github.com/user-attachments/assets/9e350237-095d-439b-8b28-fa032b392f46" />
+<img width="753" height="405" alt="3" src="https://github.com/user-attachments/assets/7defabd2-10e3-4bd1-bdb8-e5b0489a787a" />
 <img width="753" height="405" alt="4" src="https://github.com/user-attachments/assets/65948108-53a8-492d-bec4-d3c36df7aca4" />
+
 
 
 
