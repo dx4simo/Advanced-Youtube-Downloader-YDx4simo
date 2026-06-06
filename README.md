@@ -1,69 +1,149 @@
+# YouTube Media Downloader CLI
 
-# 🎬 Advanced YouTube Downloader (YDx4simo) v1.1.2
+A Python command-line practice project for downloading YouTube videos or playlists using `yt-dlp`.
 
-This is a tool for download any Video or Playlist from Youtube. It has may options for diferent qualities for videos and also mp4, mp3 and subtitles.
-Choose quality, MP4/MP3 output, and subtitles (SRT, soft or hard); it auto-installs deps (yt-dlp + portable FFmpeg), shows ASCII-safe colored progress, and saves to ./Videos.
+This project was created as a learning project to improve my Python skills, especially working with command-line interfaces, external libraries, dependency handling, file management, user input and basic automation.
 
+---
 
+## Note
 
-## ✨ Features
+Some of my older projects were transferred from my previous GitHub account to this new profile because the old account could not be recovered.
 
-- 🎬 Download **single videos or playlists** from YouTube.
-- 🎚️ **Quality selector:** 360p / 480p / 720p / 1080p / Best available.
-- 🎞️ Always MP4 for video modes; 🎵 MP3 (192 kbps) for audio-only.
-- 📝 Subtitles: save SRT, use auto-generated when needed, embed soft subs, or hard-burn into video.
-- ⚙️ Auto-setup: installs/updates yt-dlp, fetches a portable FFmpeg into ./ffmpeg/ if missing.
-- 📊 ASCII-safe colored progress bars (works on CMD/PowerShell) + colored titles/paths.
-- 🏷️ Prints the video/playlist title before downloading.
-- 📁 Saves files to ./Videos/ (auto-created).
-- 🌐 Cross-platform: Windows / Linux / macOS.
+My old project: https://github.com/dx4simo/Advanced-Youtube-Downloader-YDx4simo
 
+---
 
-## 🛠️ Installation
+## Disclaimer
 
-Install YDx4simo:
+This project is for educational purposes only.
+Please use it only with content you own, have permission to download, or that is publicly available for legal download. Always respect copyright rules and platform terms of service.
+
+---
+
+## Features
+
+* Download YouTube videos
+* Download YouTube playlists
+* Select video quality such as 360p, 480p, 720p, 1080p or best available
+* Save videos as MP4
+* Extract audio as MP3
+* Optional subtitle handling when available
+* Automatic folder creation for downloaded files
+* Colored command-line output
+* Progress display during download
+* Basic dependency setup using Python packages
+
+---
+
+## Skills Practiced
+
+Through this project, I practiced:
+
+* Python scripting
+* Building command-line applications
+* Handling user input
+* Working with external Python packages
+* File and folder management
+* Basic error handling
+* Using third-party tools such as `yt-dlp` and FFmpeg
+* Organizing a small Python project for GitHub
+
+---
+
+## Technologies Used
+
+* Python
+* yt-dlp
+* FFmpeg
+* Colorama
+* PyFiglet
+
+---
+
+## Installation
+
+Clone the repository:
 
 ```bash
-  # 1) 📦 Clone the repo
-  git clone https://github.com/dx4simo/Advanced-Youtube-Downloader-YDx4simo.git
-  cd Advanced-Youtube-Downloader-YDx4simo
-  python YD4simo_downloader.py
-
-  ## Note: 🚀 First run will auto-install deps (yt-dlp, colorama, pyfiglet) and fetch a portable FFmpeg into ./ffmpeg/ if missing. 
+git clone https://github.com/IslamAbouelregal/youtube-media-downloader-python.git
+cd youtube-media-downloader-python
 ```
-    
-## Usage/Examples
+
+Install the required packages:
 
 ```bash
- python YD4simo_downloader.py
+pip install -r requirements.txt
 ```
 
+Run the application:
+
+```bash
+python YD4simo_downloader.py
+```
+
+---
+
+## Usage
+
+After running the script, follow the instructions in the terminal:
+
+```bash
+python YD4simo_downloader.py
+```
+
+Downloaded files will be saved inside the `Videos` folder.
+
+---
+
+## Project Structure
+
+```text
+youtube-media-downloader-python/
+│
+├── YD4simo_downloader.py
+├── requirements.txt
+├── README.md
+├── screenshots/
+│   ├── screenshot-1.png
+│   ├── screenshot-2.png
+│   └── screenshot-3.png
+│
+└── Videos/
+```
+
+---
 
 ## Screenshots
 
-<img width="753" height="405" alt="1" src="https://github.com/user-attachments/assets/1c777271-9252-4c1a-99f0-29f6c2348182" />
-<img width="753" height="405" alt="2" src="https://github.com/user-attachments/assets/9e350237-095d-439b-8b28-fa032b392f46" />
-<img width="753" height="405" alt="3" src="https://github.com/user-attachments/assets/7defabd2-10e3-4bd1-bdb8-e5b0489a787a" />
-<img width="753" height="405" alt="4" src="https://github.com/user-attachments/assets/65948108-53a8-492d-bec4-d3c36df7aca4" />
+Add your screenshots inside the `screenshots` folder and update the image paths below:
 
+![Screenshot 1](screenshots/screen1.png)
+![Screenshot 2](screenshots/screen2.png)
+![Screenshot 3](screenshots/screen3.png)
+![Screenshot 3](screenshots/screen4.png)
 
+---
 
+## What I Learned
 
-## Authors
+This project helped me understand how Python can be used to build practical command-line tools.
+I practiced working with external libraries, handling user choices, managing downloaded files and improving the terminal user experience.
 
-- [@dx4simo](https://github.com/dx4simo)
+---
 
+## Future Improvements
 
-## Contributing
+* Improve the menu system
+* Add better input validation
+* Improve error messages
+* Split the code into separate Python modules
+* Add a simple graphical interface
+* Add a configuration file for default settings
 
-Contributions are always welcome!
+---
 
-See `contributing.md` for ways to get started.
+## Author
 
-Please adhere to this project's `code of conduct`.
-
-
-## Feedback
-
-If you have any feedback, please reach out to us at +201061508926
-
+**Islam Albadawy**
+Aspiring Software Developer 
