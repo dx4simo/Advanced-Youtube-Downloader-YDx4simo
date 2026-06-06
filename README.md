@@ -58,8 +58,8 @@ Through this project, I practiced:
 Clone the repository:
 
 ```bash
-git clone https://github.com/IslamAbouelregal/youtube-media-downloader-python.git
-cd youtube-media-downloader-python
+git clone git@github.com:dx4simo/Advanced-Youtube-Downloader-YDx4simo.git
+cd Advanced-Youtube-Downloader-YDx4simo
 ```
 
 Install the required packages:
