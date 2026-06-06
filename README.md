@@ -6,14 +6,6 @@ This project was created as a learning project to improve my Python skills, espe
 
 ---
 
-## Note
-
-Some of my older projects were transferred from my previous GitHub account to this new profile because the old account could not be recovered.
-
-My old project: https://github.com/dx4simo/Advanced-Youtube-Downloader-YDx4simo
-
----
-
 ## Disclaimer
 
 This project is for educational purposes only.
